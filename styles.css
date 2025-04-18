@@ -1,0 +1,230 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Vazirmatn', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+  color: #fff;
+  padding: 10px;
+  
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin-bottom: 15px;
+  color: #f5f5f5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.map-container {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 654.51147px;
+  margin: 0 auto;
+}
+
+#iran-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#iran-map path {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  stroke: #fff; /* خط مرزی سفید بین استان‌ها */
+  stroke-width: 0.5;
+}
+
+#iran-map path:hover {
+  transform: scale(1.02);
+  opacity: 0.8; /* کمی شفاف‌تر موقع هاور */
+}
+
+/* تعریف رنگ‌ها برای هر استان */
+.province-color-1 { fill: #FF6F61; } /* مرجانی */
+.province-color-2 { fill: #6B5B95; } /* بنفش تیره */
+.province-color-3 { fill: #88B04B; } /* سبز */
+.province-color-4 { fill: #F7CAC9; } /* صورتی روشن */
+.province-color-5 { fill: #92A8D1; } /* آبی روشن */
+.province-color-6 { fill: #F4A261; } /* نارنجی */
+.province-color-7 { fill: #D5A6BD; } /* یاسی */
+.province-color-8 { fill: #B565A7; } /* ارغوانی */
+.province-color-9 { fill: #009B77; } /* سبزآبی */
+.province-color-10 { fill: #DD4124; } /* قرمز تیره */
+
+/* می‌تونی تعداد بیشتری رنگ اضافه کنی */
+
+.province-label {
+  fill: #333;
+  font-size: clamp(8px, 2vw, 14px);
+  font-weight: bold;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.info-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 10px;
+}
+
+.modal-content {
+  background: #fff;
+  color: #333;
+  padding: 15px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-out;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: clamp(20px, 5vw, 24px);
+  cursor: pointer;
+  color: #ff6f61;
+}
+
+.modal-content h2 {
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  margin-bottom: 15px;
+  color: #1e3c72;
+}
+
+.attractions-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.attraction-card {
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+}
+
+.attraction-card:hover {
+  transform: translateY(-5px);
+}
+
+@keyframes slideIn {
+  from {
+      transform: translateY(-50px);
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+
+/* مدیا کوئری برای موبایل */
+@media (max-width: 768px) {
+  body {
+      padding: 5px;
+      align-items: flex-start;
+  }
+
+  .container {
+      padding: 5px;
+      height: auto;
+  }
+
+  h1 {
+      margin-bottom: 10px;
+  }
+
+  .map-container {
+      padding: 5px;
+      max-width: 100%;
+      max-height: 60vh;
+  }
+
+  #iran-map {
+      width: 100%;
+      height: 100%;
+      max-height: 60vh;
+  }
+
+  .province-label {
+      font-size: clamp(6px, 1.5vw, 10px);
+  }
+
+  .modal-content {
+      padding: 10px;
+      max-width: 90%;
+  }
+
+  .attractions-grid {
+      gap: 8px;
+  }
+
+  .attraction-card {
+      padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+      padding: 3px;
+  }
+
+  .container {
+      padding: 3px;
+  }
+
+  .map-container {
+      max-height: 50vh;
+  }
+
+  #iran-map {
+      max-height: 50vh;
+  }
+
+  .modal-content {
+      max-width: 95%;
+      padding: 8px;
+  }
+
+  .close {
+      top: 5px;
+      left: 5px;
+  }
+}
